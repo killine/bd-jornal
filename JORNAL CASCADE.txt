@@ -1,0 +1,94 @@
+create database jornal;
+use jornal;
+
+CREATE TABLE categoria (
+codCat int PRIMARY KEY auto_increment,
+categoria varchar(255)
+);
+
+CREATE TABLE turma (
+codTurma int PRIMARY KEY auto_increment,
+turma varchar(255)
+);
+
+CREATE TABLE ano (
+codAno int PRIMARY KEY
+);
+
+CREATE TABLE dia (
+codDia int PRIMARY KEY
+);
+
+CREATE TABLE mes (
+codMes int PRIMARY KEY
+);
+
+CREATE TABLE redator (
+codRedator int PRIMARY KEY auto_increment,
+nome varchar(255),
+sobrenome varchar(255),
+email varchar(255),
+ddd int,
+telefone varchar(255),
+cidade varchar(255),
+codTurma int,
+codDia int,
+codMes int,
+codAno int,
+FOREIGN KEY(codTurma) REFERENCES turma (codTurma) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(codAno) REFERENCES ano (codAno) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(codMes) REFERENCES mes (codMes) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(codDia) REFERENCES dia (codDia) ON DELETE CASCADE ON UPDATE CASCADE
+
+);
+
+
+CREATE TABLE noticia (
+codNot int PRIMARY KEY auto_increment,
+noticia text(10000),
+titulo varchar(255),
+codCat int,
+codRedator int,
+codAno int,
+codMes int,
+codDia int,
+FOREIGN KEY(codCat) REFERENCES categoria (codCat) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(codRedator) REFERENCES redator (codRedator)ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(codAno) REFERENCES ano (codAno) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(codMes) REFERENCES mes (codMes)ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(codDia) REFERENCES dia (codDia)ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+
+insert into categoria (categoria) values
+
+('k-pop'),
+('anime'),
+('bl'),
+('dorama'),
+('c-pop'),
+('j-pop'),
+('k-hip-hop'),
+('j-rock');
+
+insert into ano VALUES
+(1985), (1986), (1987), (1988), (1989), (1990), (1991), (1992),
+(1993), (1994), (1995), (1996), (1997), (1998), (1999), (2000),
+(2001), (2002), (2003), (2004), (2005), (2006), (2007), (2008), 
+(2009),(2010), (2011), (2012), (2013), (2014), (2015), (2016), 
+(2017), (2018), (2019), (2020);
+
+insert into mes VALUES
+(1), (2), (3), (4), (5), (6), (7), (8), (9), (10), (11), (12);
+
+insert into dia VALUES
+(1), (2), (3), (4), (5), (6), (7), (8), (9), (10), (11), (12), (13), (14),(15), (16), (17),
+ (18), (19), (20), (21), (22), (23), (24), (25), (26), (27), (28), (29), (30), (31);
+
+
+insert into turma (turma) values
+
+('1C'),
+('2C'),
+('3C');
